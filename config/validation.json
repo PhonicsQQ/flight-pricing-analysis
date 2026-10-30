@@ -1,0 +1,201 @@
+{
+  "schema_version": 2,
+  "purpose": "Coverage and filter validation before expansion; cached ATL reused; reserve later refresh",
+  "queries": [
+    {
+      "role": "baseline",
+      "params": {
+        "engine": "google_flights",
+        "departure_id": "BWI",
+        "type": 2,
+        "adults": 1,
+        "travel_class": 1,
+        "stops": 1,
+        "currency": "USD",
+        "hl": "en",
+        "gl": "us",
+        "arrival_id": "ATL",
+        "outbound_date": "2026-11-06"
+      }
+    },
+    {
+      "role": "baseline",
+      "params": {
+        "engine": "google_flights",
+        "departure_id": "BWI",
+        "type": 2,
+        "adults": 1,
+        "travel_class": 1,
+        "stops": 1,
+        "currency": "USD",
+        "hl": "en",
+        "gl": "us",
+        "arrival_id": "ATL",
+        "outbound_date": "2026-12-01"
+      }
+    },
+    {
+      "role": "baseline",
+      "params": {
+        "engine": "google_flights",
+        "departure_id": "BWI",
+        "type": 2,
+        "adults": 1,
+        "travel_class": 1,
+        "stops": 1,
+        "currency": "USD",
+        "hl": "en",
+        "gl": "us",
+        "arrival_id": "MCO",
+        "outbound_date": "2026-11-06"
+      }
+    },
+    {
+      "role": "baseline",
+      "params": {
+        "engine": "google_flights",
+        "departure_id": "BWI",
+        "type": 2,
+        "adults": 1,
+        "travel_class": 1,
+        "stops": 1,
+        "currency": "USD",
+        "hl": "en",
+        "gl": "us",
+        "arrival_id": "MCO",
+        "outbound_date": "2026-12-01"
+      }
+    },
+    {
+      "role": "baseline",
+      "params": {
+        "engine": "google_flights",
+        "departure_id": "BWI",
+        "type": 2,
+        "adults": 1,
+        "travel_class": 1,
+        "stops": 1,
+        "currency": "USD",
+        "hl": "en",
+        "gl": "us",
+        "arrival_id": "DEN",
+        "outbound_date": "2026-11-06"
+      }
+    },
+    {
+      "role": "baseline",
+      "params": {
+        "engine": "google_flights",
+        "departure_id": "BWI",
+        "type": 2,
+        "adults": 1,
+        "travel_class": 1,
+        "stops": 1,
+        "currency": "USD",
+        "hl": "en",
+        "gl": "us",
+        "arrival_id": "DEN",
+        "outbound_date": "2026-12-01"
+      }
+    },
+    {
+      "role": "contrast_stops",
+      "params": {
+        "engine": "google_flights",
+        "departure_id": "BWI",
+        "type": 2,
+        "adults": 1,
+        "travel_class": 1,
+        "stops": 0,
+        "currency": "USD",
+        "hl": "en",
+        "gl": "us",
+        "arrival_id": "ATL",
+        "outbound_date": "2026-11-06"
+      }
+    },
+    {
+      "role": "contrast_exclude_basic",
+      "params": {
+        "engine": "google_flights",
+        "departure_id": "BWI",
+        "type": 2,
+        "adults": 1,
+        "travel_class": 1,
+        "stops": 1,
+        "currency": "USD",
+        "hl": "en",
+        "gl": "us",
+        "arrival_id": "ATL",
+        "outbound_date": "2026-11-06",
+        "exclude_basic": "true"
+      }
+    },
+    {
+      "role": "diagnostic_bags",
+      "params": {
+        "engine": "google_flights",
+        "departure_id": "BWI",
+        "type": 2,
+        "adults": 1,
+        "travel_class": 1,
+        "stops": 1,
+        "currency": "USD",
+        "hl": "en",
+        "gl": "us",
+        "arrival_id": "ATL",
+        "outbound_date": "2026-11-06",
+        "bags": 0
+      }
+    },
+    {
+      "role": "contrast_stops",
+      "params": {
+        "engine": "google_flights",
+        "departure_id": "BWI",
+        "type": 2,
+        "adults": 1,
+        "travel_class": 1,
+        "stops": 0,
+        "currency": "USD",
+        "hl": "en",
+        "gl": "us",
+        "arrival_id": "DEN",
+        "outbound_date": "2026-11-06"
+      }
+    },
+    {
+      "role": "contrast_exclude_basic",
+      "params": {
+        "engine": "google_flights",
+        "departure_id": "BWI",
+        "type": 2,
+        "adults": 1,
+        "travel_class": 1,
+        "stops": 1,
+        "currency": "USD",
+        "hl": "en",
+        "gl": "us",
+        "arrival_id": "DEN",
+        "outbound_date": "2026-11-06",
+        "exclude_basic": "true"
+      }
+    },
+    {
+      "role": "contrast_stops",
+      "params": {
+        "engine": "google_flights",
+        "departure_id": "BWI",
+        "type": 2,
+        "adults": 1,
+        "travel_class": 1,
+        "stops": 0,
+        "currency": "USD",
+        "hl": "en",
+        "gl": "us",
+        "arrival_id": "MCO",
+        "outbound_date": "2026-11-06"
+      }
+    }
+  ]
+}

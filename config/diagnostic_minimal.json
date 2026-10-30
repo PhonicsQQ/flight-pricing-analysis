@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "anchor_date": "2026-10-30",
+  "purpose": "User-authorized extension to 13 attempts; diagnostic only, not study data",
+  "queries": [
+    {
+      "role": "diagnostic_minimal",
+      "params": {
+        "engine": "google_flights",
+        "departure_id": "BWI",
+        "arrival_id": "ATL",
+        "outbound_date": "2026-11-06",
+        "type": 2,
+        "adults": 1,
+        "travel_class": 1,
+        "stops": 1,
+        "currency": "USD",
+        "hl": "en",
+        "gl": "us"
+      }
+    }
+  ]
+}

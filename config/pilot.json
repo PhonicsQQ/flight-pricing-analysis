@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "anchor_date": "2026-10-30",
+  "purpose": "coverage probes; destinations not yet validated",
+  "queries": [
+    {
+      "role": "baseline",
+      "params": {
+        "engine": "google_flights",
+        "departure_id": "BWI",
+        "type": 2,
+        "adults": 1,
+        "children": 0,
+        "infants_in_seat": 0,
+        "infants_on_lap": 0,
+        "travel_class": 1,
+        "stops": 1,
+        "currency": "USD",
+        "hl": "en",
+        "gl": "us",
+        "exclude_basic": "false",
+        "bags": 0,
+        "deep_search": "true",
+        "sort_by": 2,
+        "arrival_id": "ATL",
+        "outbound_date": "2026-11-06"
+      }
+    },
+    {
+      "role": "baseline",
+      "params": {
+        "engine": "google_flights",
+        "departure_id": "BWI",
+        "type": 2,
+        "adults": 1,
+        "children": 0,
+        "infants_in_seat": 0,
+        "infants_on_lap": 0,
+        "travel_class": 1,
+        "stops": 1,
+        "currency": "USD",
+        "hl": "en",
+        "gl": "us",
+        "exclude_basic": "false",
+        "bags": 0,
+        "deep_search": "true",
+        "sort_by": 2,
+        "arrival_id": "ATL",
+        "outbound_date": "2026-12-01"
+      }
+    },
+    {
+      "role": "baseline",
+      "params": {
+        "engine": "google_flights",
+        "departure_id": "BWI",
+        "type": 2,
+        "adults": 1,
+        "children": 0,
+        "infants_in_seat": 0,
+        "infants_on_lap": 0,
+        "travel_class": 1,
+        "stops": 1,
+        "currency": "USD",
+        "hl": "en",
+        "gl": "us",
+        "exclude_basic": "false",
+        "bags": 0,
+        "deep_search": "true",
+        "sort_by": 2,
+        "arrival_id": "MCO",
+        "outbound_date": "2026-11-06"
+      }
+    },
+    {
+      "role": "baseline",
+      "params": {
+        "engine": "google_flights",
+        "departure_id": "BWI",
+        "type": 2,
+        "adults": 1,
+        "children": 0,
+        "infants_in_seat": 0,
+        "infants_on_lap": 0,
+        "travel_class": 1,
+        "stops": 1,
+        "currency": "USD",
+        "hl": "en",
+        "gl": "us",
+        "exclude_basic": "false",
+        "bags": 0,
+        "deep_search": "true",
+        "sort_by": 2,
+        "arrival_id": "MCO",
+        "outbound_date": "2026-12-01"
+      }
+    },
+    {
+      "role": "baseline",
+      "params": {
+        "engine": "google_flights",
+        "departure_id": "BWI",
+        "type": 2,
+        "adults": 1,
+        "children": 0,
+        "infants_in_seat": 0,
+        "infants_on_lap": 0,
+        "travel_class": 1,
+        "stops": 1,
+        "currency": "USD",
+        "hl": "en",
+        "gl": "us",
+        "exclude_basic": "false",
+        "bags": 0,
+        "deep_search": "true",
+        "sort_by": 2,
+        "arrival_id": "DEN",
+        "outbound_date": "2026-11-06"
+      }
+    },
+    {
+      "role": "baseline",
+      "params": {
+        "engine": "google_flights",
+        "departure_id": "BWI",
+        "type": 2,
+        "adults": 1,
+        "children": 0,
+        "infants_in_seat": 0,
+        "infants_on_lap": 0,
+        "travel_class": 1,
+        "stops": 1,
+        "currency": "USD",
+        "hl": "en",
+        "gl": "us",
+        "exclude_basic": "false",
+        "bags": 0,
+        "deep_search": "true",
+        "sort_by": 2,
+        "arrival_id": "DEN",
+        "outbound_date": "2026-12-01"
+      }
+    },
+    {
+      "role": "contrast_stops",
+      "params": {
+        "engine": "google_flights",
+        "departure_id": "BWI",
+        "type": 2,
+        "adults": 1,
+        "children": 0,
+        "infants_in_seat": 0,
+        "infants_on_lap": 0,
+        "travel_class": 1,
+        "stops": 0,
+        "currency": "USD",
+        "hl": "en",
+        "gl": "us",
+        "exclude_basic": "false",
+        "bags": 0,
+        "deep_search": "true",
+        "sort_by": 2,
+        "arrival_id": "ATL",
+        "outbound_date": "2026-11-06"
+      }
+    },
+    {
+      "role": "contrast_exclude_basic",
+      "params": {
+        "engine": "google_flights",
+        "departure_id": "BWI",
+        "type": 2,
+        "adults": 1,
+        "children": 0,
+        "infants_in_seat": 0,
+        "infants_on_lap": 0,
+        "travel_class": 1,
+        "stops": 1,
+        "currency": "USD",
+        "hl": "en",
+        "gl": "us",
+        "exclude_basic": "true",
+        "bags": 0,
+        "deep_search": "true",
+        "sort_by": 2,
+        "arrival_id": "ATL",
+        "outbound_date": "2026-11-06"
+      }
+    }
+  ]
+}

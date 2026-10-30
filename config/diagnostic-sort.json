@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "anchor_date": "2026-10-30",
+  "purpose": "Request 9: investigate missing price_insights; change only sort_by to documented default",
+  "queries": [
+    {
+      "role": "diagnostic_sort",
+      "params": {
+        "engine": "google_flights",
+        "departure_id": "BWI",
+        "type": 2,
+        "adults": 1,
+        "children": 0,
+        "infants_in_seat": 0,
+        "infants_on_lap": 0,
+        "travel_class": 1,
+        "stops": 1,
+        "currency": "USD",
+        "hl": "en",
+        "gl": "us",
+        "exclude_basic": "false",
+        "bags": 0,
+        "deep_search": "true",
+        "sort_by": 1,
+        "arrival_id": "ATL",
+        "outbound_date": "2026-11-06"
+      }
+    }
+  ]
+}
