@@ -1,0 +1,54 @@
+{
+  "schema_version": 2,
+  "purpose": "Pending three later-day refreshes; do not replace frozen analysis inputs",
+  "queries": [
+    {
+      "role": "baseline",
+      "params": {
+        "engine": "google_flights",
+        "departure_id": "BWI",
+        "arrival_id": "ATL",
+        "outbound_date": "2026-11-06",
+        "type": 2,
+        "adults": 1,
+        "travel_class": 1,
+        "stops": 1,
+        "currency": "USD",
+        "hl": "en",
+        "gl": "us"
+      }
+    },
+    {
+      "role": "baseline",
+      "params": {
+        "engine": "google_flights",
+        "departure_id": "BWI",
+        "arrival_id": "MCO",
+        "outbound_date": "2026-11-20",
+        "type": 2,
+        "adults": 1,
+        "travel_class": 1,
+        "stops": 1,
+        "currency": "USD",
+        "hl": "en",
+        "gl": "us"
+      }
+    },
+    {
+      "role": "baseline",
+      "params": {
+        "engine": "google_flights",
+        "departure_id": "BWI",
+        "arrival_id": "DEN",
+        "outbound_date": "2026-12-04",
+        "type": 2,
+        "adults": 1,
+        "travel_class": 1,
+        "stops": 1,
+        "currency": "USD",
+        "hl": "en",
+        "gl": "us"
+      }
+    }
+  ]
+}

@@ -5,5 +5,8 @@ description = "A feasibility-first study of fixed-trip fare histories"
 requires-python = ">=3.11"
 dependencies = []
 
+[project.optional-dependencies]
+analysis = ["numpy>=2", "pandas>=2", "matplotlib>=3.9"]
+
 [tool.unittest]
 start-directory = "tests"

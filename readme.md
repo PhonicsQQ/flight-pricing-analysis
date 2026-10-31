@@ -8,6 +8,24 @@ This portfolio project starts with data feasibility, then descriptive research, 
 
 ## Run locally
 
+### Frozen descriptive analysis
+
+The first offline analysis is complete. Open `artifacts/analysis-v1/report.md` locally for five figures, exact-horizon changes, route/lead-time and weekday comparisons, observed minima, and limitations. The report and data remain ignored pending redistribution/public-display clarification. This is descriptive research; no predictive model or buying strategy has been validated.
+
+```sh
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements-analysis.lock.txt
+python3 -m flights.freeze
+.venv/bin/python -m flights.analyze
+.venv/bin/python -m unittest discover -s tests -v
+```
+
+The freeze requires the collected, processed study files. It preserves version `2026-10-30-v1` and verifies input and raw-response hashes on every analysis run. Later collection cannot silently replace these analysis inputs. Analysis makes no API calls and needs no credentials. The locked environment was tested with Python 3.13.2; the standard-library collection pipeline remains separate from analysis dependencies.
+
+Three revision-check refreshes are prepared in `config/refresh-three.json`; they have not been executed or automatically scheduled. All become eligible after the collector's 24-hour minimum at 12:48 PM Eastern on October 31, 2026. See `docs/analysis-methods.md` for the next steps.
+
+### Collection and processing
+
 Python 3.11+ on macOS/Linux. On macOS builds lacking a default CA file, the collector uses `/etc/ssl/cert.pem` with certificate verification enabled. The pilot uses only the Python standard library; no dependency installation is required. Tested with Python 3.13.2. Run from this repository's root:
 
 ```sh
