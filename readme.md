@@ -4,7 +4,20 @@ How does the lowest available economy fare for a fixed route and departure date 
 
 This portfolio project starts with data feasibility, then descriptive research, and only then considers forecasting and a small Streamlit demo. It studies a trip's cheapest qualifying option; the airline or flight supplying that price can change. It does not track a physical seat.
 
-**Status: collection complete—168 study trips queried, 167 usable histories, 10,282 daily prices. Three BWI routes, departures October 31–December 25, 2026. Verified free quota remaining: 64. Spending: $0.** See [the collection report](docs/collection-report.md) and [the feasibility report](docs/feasibility.md) for verified facts and unresolved questions.
+**Status: local research demo complete. Frozen study: 168 trips queried, 167 usable histories, 10,282 daily prices. Three November 5 refreshes found two historical revisions. Verified free quota remaining: 61; 190 of 200 project attempts used. Spending: $0.** See [the collection report](docs/collection-report.md) and [the feasibility report](docs/feasibility.md) for verified facts and unresolved questions.
+
+## Interactive research demo
+
+The opening focuses on traveler questions: how late fares tended to rise, how often waiting cost more or saved money, and the size of those changes. Choose a route, starting lead time, and wait length. Individual histories and research details are expandable. There is no asserted safe booking deadline. [Metric definitions and checks](docs/traveler-analytics.md).
+
+```sh
+python3 -m flights.export_demo
+python3 -m flights.serve_demo
+```
+
+Open http://127.0.0.1:4174. Explore the actual frozen histories, exact observed changes, route/lead-time patterns, weekday associations, missing coverage, and later revisions. No API key, network search, or model prediction is used. Generated data stays in ignored `artifacts/demo/`; the existing synthetic `site/` placeholder is unchanged.
+
+The [research decision](docs/next-steps-research.md) explains why the completed demo is descriptive and static, and why modeling remains deferred. A same-trip sensitivity supports the near-departure pattern but does not establish causality. [Run/deployment instructions](docs/demo-and-deployment.md) and [verification](docs/demo-verification.md) document reproduction, free-host feasibility, and remaining publication permissions. Results concern a selected BWI sample; they are not current booking advice.
 
 ## Run locally
 

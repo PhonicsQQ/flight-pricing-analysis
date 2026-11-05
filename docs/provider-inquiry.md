@@ -1,5 +1,31 @@
 # Provider inquiry draft — not sent
 
+## Current draft — November 5, 2026
+
+Subject: Google Flights history semantics, revisions, and noncommercial portfolio display
+
+Hello SerpApi support,
+
+We are developing a noncommercial data-science portfolio project using your Google Flights endpoint. Minimal one-way searches now return histories reliably for our sampled BWI routes. Our local study has 167 usable route/date histories from 168 planned searches.
+
+Search constraints are one adult, one-way, economy, nonstop, USD, US/English locale. We use the search-level `price_insights.price_history`, not a travel-date grid. On November 5, we refreshed three October 30 queries with identical parameters. All returned 62 observations; six dates were added and six oldest dates removed. Two overlapping historical prices changed: BWI–MCO November 20 departure, October 29 historical timestamp, $123 to $94; and BWI–DEN December 4 departure, October 30 timestamp, $168 to $134. We preserve both retrievals and make no live booking or predictive-accuracy claims.
+
+Could you clarify:
+
+1. Do historical prices reflect the cheapest returned option under our passenger/cabin/nonstop filters, including basic economy? Do mandatory taxes and fees use comparable definitions throughout the history?
+2. What timezone, aggregation, and within-day convention do the historical timestamps represent? Are the revisions above expected, and what can cause changes to earlier observations?
+3. Is local storage for this research permitted, and under what retention conditions?
+4. May a free, noncommercial public portfolio demo display individual collected histories and aggregate statistics? May we distribute processed observations, raw responses, or Google Flights verification screenshots? Please distinguish these uses and any upstream restrictions.
+5. What attribution or other requirements would apply?
+
+We can provide the relevant provider search IDs privately if helpful. No API key is included. The real-data demo currently stays local, pending clarification.
+
+Thank you.
+
+---
+
+## Earlier diagnostic draft (historical)
+
 **Update:** The original omission report below is historical. A later minimal one-way request and its fresh-fetch repeat returned 62 browser-matched points; a round-trip control also succeeded. Before sending, include this result and ask which optional parameters could suppress insights, alongside the semantic and publication questions.
 
 Subject: Google Flights price_insights absent despite visible browser history
