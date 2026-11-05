@@ -22,7 +22,7 @@ python3 -m flights.freeze
 
 The freeze requires the collected, processed study files. It preserves version `2026-10-30-v1` and verifies input and raw-response hashes on every analysis run. Later collection cannot silently replace these analysis inputs. Analysis makes no API calls and needs no credentials. The locked environment was tested with Python 3.13.2; the standard-library collection pipeline remains separate from analysis dependencies.
 
-Three revision-check refreshes are prepared in `config/refresh-three.json`; they have not been executed or automatically scheduled. All become eligible after the collector's 24-hour minimum at 12:48 PM Eastern on October 31, 2026. See `docs/analysis-methods.md` for the next steps.
+Three revision-check refreshes completed November 5, 2026. Each returned six new dates and dropped six oldest dates; two overlapping historical prices were revised. See local `artifacts/refresh-checks/report.md` and `docs/analysis-methods.md`. The October 30 analysis freeze is unchanged. Latest verified free quota: 61; lifetime ledger: 190 attempts; spending: $0.
 
 ### Collection and processing
 
