@@ -18,9 +18,9 @@ function traveler(){
     $('scenario-cards').replaceChildren();
     for(const [label,value,note] of [
       ['Waiting cost more',pct(s.up),`${s.rises} of ${s.trips} trips`],
-      ['Extra cost when it rose',s.medianExtra===null?'—':usd(s.medianExtra),'Median increase'],
+      ['Extra cost when it rose',s.medianExtra===null?'N/A':usd(s.medianExtra),'Median increase'],
       ['Waiting saved money',pct(s.down),`${s.falls} of ${s.trips} trips`],
-      ['Savings when it fell',s.medianSaving===null?'—':usd(s.medianSaving),'Median saving']]){
+      ['Savings when it fell',s.medianSaving===null?'N/A':usd(s.medianSaving),'Median saving']]){
       const card=document.createElement('article'),title=document.createElement('h4'),valueEl=document.createElement('strong'),caption=document.createElement('p');
       title.textContent=label;valueEl.textContent=value;caption.textContent=note;card.append(title,valueEl,caption);$('scenario-cards').append(card);
     }
@@ -30,12 +30,12 @@ function traveler(){
     text('outcome-legend',`${pct(s.down)} cost less · ${pct(s.flat)} unchanged · ${pct(s.up)} cost more`);
     text('scenario-bottomline',`Median change: ${signed(s.median)} (${s.medianPercent>0?'+':''}${s.medianPercent.toFixed(1)}%) · Average: ${signed(s.mean)}`);
   }
-  text('timing-caption',`What followed a ${h}-day wait, ${route==='ALL'?'across the three sampled BWI routes':'on BWI–'+route}.`);
+  text('timing-caption',`What followed a ${h} day wait, ${route==='ALL'?'across the three sampled BWI routes':'on BWI to '+route}.`);
   $('timing-rows').replaceChildren();
-  for(const start of [60,45,30,21,14,7]){const v=waitingScenario(trips,start,h);row('timing-rows',[`${start} → ${start-h} days out`,v?v.trips:0,v?pct(v.up):'—',v?pct(v.down):'—',v?signed(v.mean):'—']);}
+  for(const start of [60,45,30,21,14,7]){const v=waitingScenario(trips,start,h);row('timing-rows',[`${start} → ${start-h} days out`,v?v.trips:0,v?pct(v.up):'N/A',v?pct(v.down):'N/A',v?signed(v.mean):'N/A']);}
   $('mean-audit-rows').replaceChildren();
   for(const a of (data.mean_audit||[]).filter(a=>a.route===route&&a.horizon===h)){
-    row('mean-audit-rows',[`${a.lead} days`,a.trips,a.trips?signed(a.mean):'—',a.without_largest==null?'—':signed(a.without_largest),a.without_largest_10pct==null?'—':signed(a.without_largest_10pct),!a.trips?'No data':a.small_sample?'Under 10 trips':a.sign_can_flip?'One trip can flip the sign':'No single-trip sign flip']);
+    row('mean-audit-rows',[`${a.lead} days`,a.trips,a.trips?signed(a.mean):'N/A',a.without_largest==null?'N/A':signed(a.without_largest),a.without_largest_10pct==null?'N/A':signed(a.without_largest_10pct),!a.trips?'No data':a.small_sample?'Under 10 trips':a.sign_can_flip?'One trip can flip the sign':'No sign flip from one trip']);
   }
 }
 function selectedTrip(){return data.trips.find(t=>t.route===$('route').value && t.departure===$('departure').value);}
@@ -60,28 +60,27 @@ function trip(){
   const first=t.points[0],last=t.points.at(-1),min=Math.min(...t.points.map(p=>p[1])),ties=t.points.filter(p=>p[1]===min),changes=pairs(t,h);
   text('coverage',`${displayDate(first[0])} to ${displayDate(last[0])} · ${t.points.length} observed dates · stops ${last[2]} days before departure`);
   chart(t);$('trip-metrics').replaceChildren();
-  for(const [label,value] of [['Lowest observed',usd(min)],['Days tied at minimum',String(ties.length)],['Exact '+h+'-day pairs',String(changes.length)]]){const el=document.createElement('div');const strong=document.createElement('strong');strong.textContent=value;const span=document.createElement('span');span.textContent=label;el.append(strong,span);$('trip-metrics').append(el);}
-  text('minimum-dates',`Minimum dates: ${displayDate(ties[0][0])} to ${displayDate(ties.at(-1)[0])} · ${ties[0][2]}–${ties.at(-1)[2]} days out · nonconsecutive ties possible`);
+  for(const [label,value] of [['Lowest observed',usd(min)],['Days tied at minimum',String(ties.length)],['Exact '+h+' day pairs',String(changes.length)]]){const el=document.createElement('div');const strong=document.createElement('strong');strong.textContent=value;const span=document.createElement('span');span.textContent=label;el.append(strong,span);$('trip-metrics').append(el);}
+  text('minimum-dates',`Minimum dates: ${displayDate(ties[0][0])} to ${displayDate(ties.at(-1)[0])} · ${ties[0][2]} to ${ties.at(-1)[2]} days out · nonconsecutive ties possible`);
   const chosen=$('observation').value;$('observation').replaceChildren();t.points.forEach(p=>option($('observation'),p[0],`${displayDate(p[0])} · ${p[2]} days before departure`));$('observation').value=t.points.some(p=>p[0]===chosen)?chosen:t.points[Math.max(0,t.points.length-h-1)][0];inspection();
   $('observations').replaceChildren();const index=new Map(changes.map(p=>[p.date,p]));for(const p of t.points){const c=index.get(p[0]);row('observations',[displayDate(p[0]),p[2],usd(p[1]),displayDate(laterDate(p[0],h)),c?`${signed(c.usd)} (${c.pct>0?'+':''}${c.pct.toFixed(1)}%)`:'No exact observation']);}
 }
 function summaries(){
   const h=+$('summary-horizon').value,s=summarize(data.trips,h);$('directions').replaceChildren();
   for(const [label,value] of [['Rose',pct(s.up)],['Fell',pct(s.down)],['Unchanged',pct(s.flat)],['Mean dollar change',signed(s.usd)]]){const card=document.createElement('div');const strong=document.createElement('strong');strong.textContent=value;const span=document.createElement('span');span.textContent=label;card.append(strong,span);$('directions').append(card);}
-  text('summary-counts',`${s.trips} eligible histories · ${fmt.format(s.pairs)} exact ${h}-day pairs · equal weight per trip · mean percentage change ${s.pct>0?'+':''}${s.pct.toFixed(1)}%`);
   for(const id of ['routes','leads'])$(id).replaceChildren();
-  const add=(id,label,r)=>row(id,[label,r?`${r.trips} / ${fmt.format(r.pairs)}`:'0 / 0',r?pct(r.up):'—',r?signed(r.usd):'—']);
-  for(const route of ['ATL','MCO','DEN'])add('routes','BWI–'+route,summarize(data.trips.filter(t=>t.route===route),h));
-  for(const b of leadLabels)add('leads',b,summarize(data.trips,h,p=>leadBucket(p.lead)===b));
+  const add=(id,label,r)=>row(id,[label,r?`${r.trips} / ${fmt.format(r.pairs)}`:'0 / 0',r?pct(r.up):'N/A',r?signed(r.usd):'N/A']);
+  for(const route of ['ATL','MCO','DEN'])add('routes','BWI to '+route,summarize(data.trips.filter(t=>t.route===route),h));
+  for(const b of leadLabels)add('leads',b.replace('–',' to '),summarize(data.trips,h,p=>leadBucket(p.lead)===b));
   const a=data.results.overall.find(r=>+r.label===h);
-  text('uncertainty',`Rise frequency: 95% trip-bootstrap range ${pct(a.up_trip_ci[0])}–${pct(a.up_trip_ci[1])}. Departure-week block sensitivity: ${pct(a.up_week_ci[0])}–${pct(a.up_week_ci[1])}. 2,000 resamples; only eight departure-week blocks. These ranges do not establish population-wide confidence.`);
+  text('uncertainty',`Rise frequency: 95% trip bootstrap range ${pct(a.up_trip_ci[0])} to ${pct(a.up_trip_ci[1])}. Departure week block sensitivity: ${pct(a.up_week_ci[0])} to ${pct(a.up_week_ci[1])}. 2,000 resamples; only eight departure week blocks. These ranges do not establish population wide confidence.`);
 }
 function otherSections(){
-  if(data.sensitivity){const s=data.sensitivity;text('sensitivity',`Same-trip sensitivity (seven days): among the same ${s.trips} trips, rises occurred ${pct(s.near.trip_up)} of the time starting 8–14 days before departure (${s.near.pairs} pairs), versus ${pct(s.far.trip_up)} at 31–60 days (${s.far.pairs} pairs). This exploratory comparison still mixes different observation calendar dates; it is not a causal effect of waiting.`);}
+  if(data.sensitivity){const s=data.sensitivity;text('sensitivity',`Same trip sensitivity (seven days): among the same ${s.trips} trips, rises occurred ${pct(s.near.trip_up)} of the time starting 8 to 14 days before departure (${s.near.pairs} pairs), versus ${pct(s.far.trip_up)} at 31 to 60 days (${s.far.pairs} pairs). This exploratory comparison still mixes different observation calendar dates; it is not a causal effect of waiting.`);}
   const weekdays=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];const w=data.results.weekdays_7d;
   for(const day of weekdays)row('weekdays',[day,...['departure_weekday','observation_weekday'].map(field=>w[field].standardized.rates[day]===undefined?'Insufficient common cells':pct(w[field].standardized.rates[day]))]);
   text('weekday-note',`At least three trips per weekday/cell. Common route/lead cells: ${w.departure_weekday.standardized.common_cells} for departure weekdays and ${w.observation_weekday.standardized.common_cells} for observation weekdays. Results describe a different eligible population from the unadjusted summaries.`);
-  for(const r of data.refreshes){const last=r.added.at(-1);row('refreshes',[`BWI–${r.route} · ${displayDate(r.departure)}`,r.overlap,r.revisions.length,r.original_last&&last?`${usd(r.original_last[1])} → ${usd(last[1])}`:'Unavailable']);}
+  for(const r of data.refreshes){const last=r.added.at(-1);row('refreshes',[`BWI to ${r.route} · ${displayDate(r.departure)}`,r.overlap,r.revisions.length,r.original_last&&last?`${usd(r.original_last[1])} → ${usd(last[1])}`:'Unavailable']);}
 }
 $('route').addEventListener('change',dates);$('departure').addEventListener('change',trip);$('horizon').addEventListener('change',trip);$('observation').addEventListener('change',inspection);$('summary-horizon').addEventListener('change',summaries);
 for(const id of ['traveler-route','start-lead','wait-days'])$(id).addEventListener('change',traveler);
@@ -90,7 +89,7 @@ $('reveal').addEventListener('click',()=>{const h=+$('horizon').value,c=pairs(se
 try {
   const response=await fetch('./data.json');if(!response.ok)throw new Error('Saved data unavailable');data=await response.json();
   if(!data.trips?.length || !data.results?.overall?.length)throw new Error('Saved dataset is empty or incompatible');
-  text('ntrips',fmt.format(data.results.trips));text('nprices',fmt.format(data.results.observations));text('version',displayDate(data.version)+' · v1');
+  text('version',displayDate(data.version)+' · v1');
   dates();summaries();otherSections();traveler();$('content').hidden=false;$('loading').hidden=true;
 } catch(error){$('loading').hidden=true;$('error').hidden=false;text('error','Unable to load the saved research dataset. Rebuild with python3 -m flights.export_demo and launch python3 -m flights.serve_demo. No sample prices are substituted.');console.error(error);}
 
