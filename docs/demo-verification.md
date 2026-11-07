@@ -24,3 +24,7 @@ Phone-width layout is implemented with CSS breakpoints but was not tested on a p
 ## Reproduction
 
 See `docs/demo-and-deployment.md`. Node is a development-check dependency only; running the exported demo requires Python's standard library and a browser. `artifacts/demo/build.json` records current build sizes and file hashes. The complete bundle is approximately 300 KB. No additional flight searches, API spending, account changes, or external publication occurred during this work.
+
+## Expected-value sensitivity update
+
+Added an optional table comparing primary means with largest-change omission and top-10%-absolute-change omission. All original prices remain in primary results. Automated checks: 35 Python and six Node tests passed. Browser verification of this addition was blocked by an in-app-browser network-suspended error and subsequent inspection timeout; no successful visual check is claimed for this update. The existing preview port was already occupied, so its process was left untouched.

@@ -1,0 +1,38 @@
+{
+  "version": "2026-11-05-v1",
+  "status": "planned_not_scheduled",
+  "query_manifest": "config/prospective-queries.json",
+  "timezone": "America/New_York",
+  "departure_date": "2026-11-27",
+  "selection": "All three already covered routes; common departure permits 15/8/1-day lead checkpoints. Thanksgiving-period convenience sample.",
+  "checkpoints": [
+    {
+      "date": "2026-11-12",
+      "lead_days": 15,
+      "role": "baseline_capture"
+    },
+    {
+      "date": "2026-11-19",
+      "lead_days": 8,
+      "role": "development_endpoint_and_final_start"
+    },
+    {
+      "date": "2026-11-26",
+      "lead_days": 1,
+      "role": "reserved_final_endpoint"
+    }
+  ],
+  "local_time_window": [
+    "12:00",
+    "12:30"
+  ],
+  "primary_target": "Difference in current price_insights.lowest_price between actual retrieval snapshots; not reconstructed history",
+  "baseline_prediction_usd": 0,
+  "training": "None: no fitted model and no selection using pilot outcomes",
+  "planned_attempts": 9,
+  "retry_reserve": 1,
+  "lifetime_cap": 200,
+  "account_reserve": 40,
+  "missed_window": "Skip and record missing; never backfill a prospective price from returned history",
+  "evaluation": "First interval is a pipeline check. Final interval remains unopened until final evaluation; baseline is fixed now. Same three trip groups: no group-held-out or broad generalization claim."
+}

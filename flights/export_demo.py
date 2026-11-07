@@ -53,7 +53,9 @@ def export_payload():
                 original_last=[r['original_last']['observation_date'],r['original_last']['price']] if r['original_last'] else None))
     sensitivity_path = ROOT/'artifacts/analysis-v1/same-trip-sensitivity.json'
     sensitivity = json.loads(sensitivity_path.read_text()) if sensitivity_path.exists() else None
-    return dict(version=manifest['version'], trips=trips, results=results, refreshes=refreshes, sensitivity=sensitivity,
+    mean_path = ROOT/'artifacts/analysis-v1/mean-sensitivity.json'
+    mean_audit = json.loads(mean_path.read_text()) if mean_path.exists() else []
+    return dict(version=manifest['version'], trips=trips, results=results, refreshes=refreshes, sensitivity=sensitivity, mean_audit=mean_audit,
                 attribution='Google Flights via SerpApi (third-party extraction)',
                 observation_zone='America/New_York (provisional)',
                 use='Local research only; public display and redistribution unresolved')

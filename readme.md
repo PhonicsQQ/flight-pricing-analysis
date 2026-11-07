@@ -6,6 +6,12 @@ This portfolio project starts with data feasibility, then descriptive research, 
 
 **Status: local research demo complete. Frozen study: 168 trips queried, 167 usable histories, 10,282 daily prices. Three November 5 refreshes found two historical revisions. Verified free quota remaining: 61; 190 of 200 project attempts used. Spending: $0.** See [the collection report](docs/collection-report.md) and [the feasibility report](docs/feasibility.md) for verified facts and unresolved questions.
 
+## Expected-value check and prospective pilot
+
+The historical means have been checked for sensitivity to large changes. Run `python3 -m flights.mean_audit`; the local report is `artifacts/analysis-v1/mean-sensitivity.md`. The demo exposes this as an optional table, keeping all observations in the primary expected value.
+
+[The prospective pilot](docs/prospective-pilot.md) reserves nine searches for three routes at three future checkpoints, with one attempt left for debugging. It uses actual retrieval-time quotes and a fixed no-change baseline; no model is fitted. Dry run: `python3 -m flights.prospective`. Nothing is scheduled automatically, and no new searches were used to prepare this plan.
+
 ## Interactive research demo
 
 The opening focuses on traveler questions: how late fares tended to rise, how often waiting cost more or saved money, and the size of those changes. Choose a route, starting lead time, and wait length. Individual histories and research details are expandable. There is no asserted safe booking deadline. [Metric definitions and checks](docs/traveler-analytics.md).

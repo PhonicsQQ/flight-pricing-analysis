@@ -13,7 +13,7 @@ class DemoExportTests(unittest.TestCase):
     def test_waiting_scenarios_agree_with_independent_python_pairs(self):
         import subprocess
         import shutil
-        from statistics import median
+        from statistics import median, mean
         if not shutil.which('node'):
             self.skipTest('Node only needed for development checks')
         payload=export_payload()
@@ -41,6 +41,7 @@ class DemoExportTests(unittest.TestCase):
             else:
                 self.assertEqual(result['trips'],len(changes))
                 self.assertEqual(result['median'],median(changes))
+                self.assertAlmostEqual(result['mean'],mean(changes))
                 self.assertAlmostEqual(result['up'],sum(c>0 for c in changes)/len(changes))
                 self.assertAlmostEqual(result['down'],sum(c<0 for c in changes)/len(changes))
 

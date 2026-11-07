@@ -33,6 +33,10 @@ function traveler(){
   text('timing-caption',`What followed a ${h}-day wait, ${route==='ALL'?'across the three sampled BWI routes':'on BWI–'+route}.`);
   $('timing-rows').replaceChildren();
   for(const start of [60,45,30,21,14,7]){const v=waitingScenario(trips,start,h);row('timing-rows',[`${start} → ${start-h} days out`,v?v.trips:0,v?pct(v.up):'—',v?pct(v.down):'—',v?signed(v.mean):'—']);}
+  $('mean-audit-rows').replaceChildren();
+  for(const a of (data.mean_audit||[]).filter(a=>a.route===route&&a.horizon===h)){
+    row('mean-audit-rows',[`${a.lead} days`,a.trips,a.trips?signed(a.mean):'—',a.without_largest==null?'—':signed(a.without_largest),a.without_largest_10pct==null?'—':signed(a.without_largest_10pct),!a.trips?'No data':a.small_sample?'Under 10 trips':a.sign_can_flip?'One trip can flip the sign':'No single-trip sign flip']);
+  }
 }
 function selectedTrip(){return data.trips.find(t=>t.route===$('route').value && t.departure===$('departure').value);}
 function dates(){const old=$('departure').value;$('departure').replaceChildren();data.trips.filter(t=>t.route===$('route').value).forEach(t=>option($('departure'),t.departure,displayDate(t.departure)+(t.points.length?'':' · history missing')));$('departure').value=old||'2026-11-06';trip();}
